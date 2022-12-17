@@ -1,0 +1,49 @@
+{
+  "tasks": [
+    {
+      "detail": "pnpm build",
+      "group": {
+        "isDefault": true,
+        "kind": "build"
+      },
+      "isBackground": true,
+      "label": "pnpm: build",
+      "problemMatcher": [
+        {
+          "applyTo": "closedDocuments",
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": {
+              "regexp": "\\s*\\[watch\\] build started"
+            },
+            "endsPattern": {
+              "regexp": "^\\s*\\[watch\\] build finished"
+            }
+          },
+          "fileLocation": ["relative", "${workspaceFolder}"],
+          "owner": "typescript",
+          "pattern": [
+            {
+              "regexp": "^\\s*✘\\s*\\[ERROR\\]\\s*(.+)$",
+              "message": 1
+            },
+            {
+              "regexp": "^\\s*$"
+            },
+            {
+              "regexp": "^\\s*(.+):(\\d+):(\\d+):$",
+              "file": 1,
+              "line": 2,
+              "column": 3
+            }
+          ],
+          "severity": "error",
+          "source": "esbuild"
+        }
+      ],
+      "script": "watch",
+      "type": "npm"
+    }
+  ],
+  "version": "2.0.0"
+}

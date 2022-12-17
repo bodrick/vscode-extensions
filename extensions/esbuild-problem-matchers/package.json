@@ -1,0 +1,114 @@
+{
+  "name": "esbuild-problem-matchers",
+  "version": "0.1.0",
+  "description": "Problem matchers for projects using esbuild",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nhedger/vscode-ts-esbuild-problem-matchers.git"
+  },
+  "author": "Chris Motch <cmotch+npm@gmail.com>",
+  "homepage": "https://github.com/nhedger/vscode-ts-esbuild-problem-matchers",
+  "bugs": {
+    "url": "https://github.com/nhedger/vscode-ts-esbuild-problem-matchers/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "scripts": {
+    "package": "vsce package",
+    "pre-release": "vsce publish --pre-release",
+    "publish": "vsce publish"
+  },
+  "keywords": [
+    "typescript",
+    "esbuild",
+    "problem-matcher"
+  ],
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "problemMatchers": [
+      {
+        "applyTo": "closedDocuments",
+        "fileLocation": "relative",
+        "label": "esbuild problem matcher",
+        "name": "esbuild",
+        "owner": "typescript",
+        "pattern": [
+          {
+            "column": 3,
+            "file": 1,
+            "line": 2,
+            "message": 5,
+            "regexp": "> (.*?):([0-9]+):([0-9]+): (warning|error): (.+)$",
+            "severity": 4
+          }
+        ],
+        "severity": "error",
+        "source": "esbuild"
+      },
+      {
+        "applyTo": "closedDocuments",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "\\[watch\\] build started"
+          },
+          "endsPattern": {
+            "regexp": "\\[watch\\] build finished"
+          }
+        },
+        "base": "$esbuild",
+        "fileLocation": "relative",
+        "label": "esbuild --watch problem matcher",
+        "name": "esbuild-watch",
+        "owner": "typescript",
+        "severity": "error",
+        "source": "esbuild"
+      },
+      {
+        "applyTo": "closedDocuments",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "name": "ts-esbuild",
+        "owner": "typescript",
+        "pattern": [
+          {
+            "message": 1,
+            "regexp": "^\\s*✘\\s*\\[ERROR\\]\\s*(.+)$"
+          },
+          {
+            "regexp": "^\\s*$"
+          },
+          {
+            "column": 3,
+            "file": 1,
+            "line": 2,
+            "regexp": "^\\s*(.+):(\\d+):(\\d+):$"
+          }
+        ],
+        "severity": "error",
+        "source": "ts"
+      },
+      {
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "\\s*\\[watch\\] build started"
+          },
+          "endsPattern": {
+            "regexp": "^\\s*\\[watch\\] build finished"
+          }
+        },
+        "base": "$ts-esbuild",
+        "name": "ts-esbuild-watch"
+      }
+    ]
+  },
+  "displayName": "esbuild problem matchers",
+  "publisher": "bodrick"
+}

@@ -1,0 +1,57 @@
+{
+  "name": "extensions-general",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "author": "Chris Motch <cmotch+npm@gmail.com>",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "scripts": {
+    "package": "vsce package",
+    "pre-release": "vsce publish --pre-release",
+    "publish": "vsce publish"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "displayName": "Extensions useful for all languages",
+  "extensionPack": [
+    "aaron-bond.better-comments",
+    "alefragnani.project-manager",
+    "be5invis.toml",
+    "bierner.emojisense",
+    "buenon.scratchpads",
+    "christian-kohler.path-intellisense",
+    "DavidAnson.vscode-markdownlint",
+    "DotJoshJohnson.xml",
+    "eamodio.gitlens",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "formulahendry.code-runner",
+    "GitHub.copilot",
+    "GitHub.copilot-labs",
+    "Gruntfuggly.todo-tree",
+    "jock.svg",
+    "johnpapa.vscode-peacock",
+    "mechatroner.rainbow-csv",
+    "mikestead.dotenv",
+    "oderwat.indent-rainbow",
+    "pflannery.vscode-versionlens",
+    "qcz.text-power-tools",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml",
+    "richie5um2.vscode-sort-json",
+    "ritwickdey.LiveServer",
+    "robole.snippets-ranger",
+    "spmeesseman.vscode-taskexplorer",
+    "streetsidesoftware.code-spell-checker",
+    "timonwong.shellcheck",
+    "usernamehw.commands",
+    "usernamehw.errorlens",
+    "VisualStudioExptTeam.intellicode-api-usage-examples",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "vscode-icons-team.vscode-icons"
+  ],
+  "publisher": "bodrick"
+}

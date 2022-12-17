@@ -1,0 +1,32 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - main
+
+pool:
+  name: 'Default'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      yarn install --immutable
+    displayName: 'Install dependencies'
+
+  - script: |
+      yarn build
+    displayName: 'Build project'
+
+  - script: |
+      yarn version check
+    displayName: 'Version check'
+
+  - script: |
+      yarn workspaces foreach npm publish --tolerate-republish
+    displayName: 'Publish packages'

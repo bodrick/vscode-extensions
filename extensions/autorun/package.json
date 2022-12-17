@@ -1,0 +1,40 @@
+{
+  "name": "autorun",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Chris Motch <cmotch+npm@gmail.com>",
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "scripts": {
+    "build": "pnpm run build:base --sourcemap",
+    "build:base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "compile-tests": "tsc -p . --outDir out",
+    "package": "vsce package",
+    "pre-release": "vsce publish --pre-release",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "publish": "vsce publish",
+    "test": "node ./out/test/runTest.js",
+    "test-compile": "tsc -p ./",
+    "vscode:prepublish": "pnpm run build:base --minify",
+    "watch": "pnpm run build:base --sourcemap --watch",
+    "watch:tests": "tsc -p . -w --outDir out"
+  },
+  "activationEvents": [
+    "onCommand:autorun.helloWorld"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "autorun.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "displayName": "autorun",
+  "publisher": "bodrick"
+}

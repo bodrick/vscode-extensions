@@ -1,0 +1,42 @@
+{
+    "folders": [
+        {
+            "path": ".",
+            "name": "vscode-extensions (root)"
+        },
+        {
+            "path": "extensions/autorun",
+            "name": "autorun (extension)"
+        },
+        {
+            "path": "extensions/esbuild-problem-matchers",
+            "name": "esbuild-problem-matchers (extension)"
+        },
+        {
+            "path": "extensions/extensions-all",
+            "name": "extensions-all (extension group)"
+        },
+        {
+            "path": "extensions/extensions-general",
+            "name": "extensions-general (extension group)"
+        },
+        {
+            "path": "packages/eslint-config",
+            "name": "eslint-config (package)"
+        }
+    ],
+    "settings": {
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "typescript.tsc.autoDetect": "off"
+    },
+    "extensions": {
+        "recommendations": [
+            "davidanson.vscode-markdownlint",
+            "dbaeumer.vscode-eslint",
+            "editorconfig.editorconfig",
+            "esbenp.prettier-vscode",
+            "streetsidesoftware.code-spell-checker"
+        ],
+        "unwantedRecommendations": ["hookyqr.beautify", "dbaeumer.jshint"]
+    }
+}
