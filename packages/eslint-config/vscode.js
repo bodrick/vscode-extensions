@@ -1,6 +1,9 @@
 const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
+    settings: {
+        'configuration-type': 'vscode'
+    },
     extends: [
         './rules/best-practices',
         './rules/errors',
@@ -11,10 +14,31 @@ module.exports = defineConfig({
         './rules/imports',
         './rules/strict',
         './rules/typescript',
-        './rules/prettier'
+        './rules/code-quality.js',
+        './rules/security.js',
+        './rules/prettier',
+        './base-overrides.js'
     ].map((element) => require.resolve(element)),
-    parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module'
+    parser: require.resolve('@typescript-eslint/parser'),
+    rules: {
+        'unicorn/prevent-abbreviations': [
+            'error',
+            {
+                replacements: {
+                    dir: {
+                        direction: false
+                    },
+                    e: {
+                        event: false
+                    },
+                    cmd: {
+                        command: true
+                    },
+                    errCb: {
+                        handleError: true
+                    }
+                }
+            }
+        ]
     }
 });

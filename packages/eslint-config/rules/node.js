@@ -4,7 +4,13 @@ module.exports = defineConfig({
     env: {
         node: true
     },
-
+    settings: {
+        node: {
+            version: '>=16.0.0'
+        }
+    },
+    plugins: ['n'],
+    extends: ['plugin:n/recommended'],
     rules: {
         // enforce return after a callback
         'callback-return': 'off',

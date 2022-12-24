@@ -10,7 +10,7 @@ module.exports = defineConfig({
         'no-invalid-this': 'off',
         'no-param-reassign': ['error', { props: false }],
         'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-        // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
+        // https://basarat.gitbook.io/typescript/main-1/defaultisbad
         'import/prefer-default-export': 'off',
         'import/no-default-export': 'error'
     }

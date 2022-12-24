@@ -6,6 +6,30 @@ const { rules: baseImportsRules } = require('./imports');
 const { rules: baseStyleRules } = require('./style');
 const { rules: baseVariablesRules } = require('./variables');
 
+if (baseStyleRules === undefined) {
+    throw new Error('baseStyleRules is undefined');
+}
+
+if (baseVariablesRules === undefined) {
+    throw new Error('baseVariablesRules is undefined');
+}
+
+if (baseImportsRules === undefined) {
+    throw new Error('baseImportsRules is undefined');
+}
+
+if (baseES6Rules === undefined) {
+    throw new Error('baseES6Rules is undefined');
+}
+
+if (baseErrorsRules === undefined) {
+    throw new Error('baseErrorsRules is undefined');
+}
+
+if (baseBestPracticesRules === undefined) {
+    throw new Error('baseBestPracticesRules is undefined');
+}
+
 module.exports = defineConfig({
     plugins: ['@typescript-eslint'],
     settings: {
@@ -33,7 +57,6 @@ module.exports = defineConfig({
         // Replace Airbnb 'brace-style' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/brace-style.md
         'brace-style': 'off',
-        // @ts-ignore
         '@typescript-eslint/brace-style': baseStyleRules['brace-style'],
 
         // Replace Airbnb 'camelcase' rule with '@typescript-eslint/naming-convention'
@@ -81,170 +104,142 @@ module.exports = defineConfig({
         // Replace Airbnb 'comma-spacing' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/comma-spacing.md
         'comma-spacing': 'off',
-        // @ts-ignore
         '@typescript-eslint/comma-spacing': baseStyleRules['comma-spacing'],
 
         // Replace Airbnb 'default-param-last' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/default-param-last.md
         'default-param-last': 'off',
-        // @ts-ignore
         '@typescript-eslint/default-param-last': baseBestPracticesRules['default-param-last'],
 
         // Replace Airbnb 'dot-notation' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/dot-notation.md
         'dot-notation': 'off',
-        // @ts-ignore
         '@typescript-eslint/dot-notation': baseBestPracticesRules['dot-notation'],
 
         // Replace Airbnb 'func-call-spacing' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/func-call-spacing.md
         'func-call-spacing': 'off',
-        // @ts-ignore
         '@typescript-eslint/func-call-spacing': baseStyleRules['func-call-spacing'],
 
         // Replace Airbnb 'indent' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
         indent: 'off',
-        // @ts-ignore
         '@typescript-eslint/indent': baseStyleRules.indent,
 
         // Replace Airbnb 'keyword-spacing' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/keyword-spacing.md
         'keyword-spacing': 'off',
-        // @ts-ignore
         '@typescript-eslint/keyword-spacing': baseStyleRules['keyword-spacing'],
 
         // Replace Airbnb 'lines-between-class-members' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/lines-between-class-members.md
         'lines-between-class-members': 'off',
-        // @ts-ignore
         '@typescript-eslint/lines-between-class-members': baseStyleRules['lines-between-class-members'],
 
         // Replace Airbnb 'no-array-constructor' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-array-constructor.md
         'no-array-constructor': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-array-constructor': baseStyleRules['no-array-constructor'],
 
         // Replace Airbnb 'no-dupe-class-members' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-dupe-class-members.md
         'no-dupe-class-members': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-dupe-class-members': baseES6Rules['no-dupe-class-members'],
 
         // Replace Airbnb 'no-empty-function' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md
         'no-empty-function': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-empty-function': baseBestPracticesRules['no-empty-function'],
 
         // Replace Airbnb 'no-extra-parens' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-parens.md
         'no-extra-parens': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-extra-parens': baseErrorsRules['no-extra-parens'],
 
         // Replace Airbnb 'no-extra-semi' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-semi.md
         'no-extra-semi': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-extra-semi': baseErrorsRules['no-extra-semi'],
 
         // Replace Airbnb 'no-implied-eval' and 'no-new-func' rules with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-implied-eval.md
         'no-implied-eval': 'off',
         'no-new-func': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-implied-eval': baseBestPracticesRules['no-implied-eval'],
 
         // Replace Airbnb 'no-loss-of-precision' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-loss-of-precision.md
         'no-loss-of-precision': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-loss-of-precision': baseErrorsRules['no-loss-of-precision'],
 
         // Replace Airbnb 'no-loop-func' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-loop-func.md
         'no-loop-func': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-loop-func': baseBestPracticesRules['no-loop-func'],
 
         // Replace Airbnb 'no-magic-numbers' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-magic-numbers.md
         'no-magic-numbers': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-magic-numbers': baseBestPracticesRules['no-magic-numbers'],
 
         // Replace Airbnb 'no-redeclare' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-redeclare.md
         'no-redeclare': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-redeclare': baseBestPracticesRules['no-redeclare'],
 
         // Replace Airbnb 'no-shadow' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-shadow.md
         'no-shadow': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-shadow': baseVariablesRules['no-shadow'],
 
         // Replace Airbnb 'space-before-blocks' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/space-before-blocks.md
         'space-before-blocks': 'off',
-        // @ts-ignore
         '@typescript-eslint/space-before-blocks': baseStyleRules['space-before-blocks'],
 
         // Replace Airbnb 'no-throw-literal' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-throw-literal.md
         'no-throw-literal': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-throw-literal': baseBestPracticesRules['no-throw-literal'],
 
         // Replace Airbnb 'no-unused-expressions' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
         'no-unused-expressions': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-unused-expressions': baseBestPracticesRules['no-unused-expressions'],
 
         // Replace Airbnb 'no-unused-vars' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
         'no-unused-vars': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-unused-vars': baseVariablesRules['no-unused-vars'],
 
         // Replace Airbnb 'no-use-before-define' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
         'no-use-before-define': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-use-before-define': baseVariablesRules['no-use-before-define'],
 
         // Replace Airbnb 'no-useless-constructor' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-useless-constructor.md
         'no-useless-constructor': 'off',
-        // @ts-ignore
         '@typescript-eslint/no-useless-constructor': baseES6Rules['no-useless-constructor'],
 
         // Replace Airbnb 'quotes' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/quotes.md
         quotes: 'off',
-        // @ts-ignore
         '@typescript-eslint/quotes': baseStyleRules.quotes,
 
         // Replace Airbnb 'semi' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md
         semi: 'off',
-        // @ts-ignore
         '@typescript-eslint/semi': baseStyleRules.semi,
 
         // Replace Airbnb 'space-before-function-paren' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/space-before-function-paren.md
         'space-before-function-paren': 'off',
-        // @ts-ignore
         '@typescript-eslint/space-before-function-paren': baseStyleRules['space-before-function-paren'],
 
         // Replace Airbnb 'require-await' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/require-await.md
         'require-await': 'off',
-        // @ts-ignore
         '@typescript-eslint/require-await': baseBestPracticesRules['require-await'],
 
         // Replace Airbnb 'no-return-await' rule with '@typescript-eslint' version
@@ -256,13 +251,11 @@ module.exports = defineConfig({
         // Replace Airbnb 'space-infix-ops' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/space-infix-ops.md
         'space-infix-ops': 'off',
-        // @ts-ignore
         '@typescript-eslint/space-infix-ops': baseStyleRules['space-infix-ops'],
 
         // Replace Airbnb 'object-curly-spacing' rule with '@typescript-eslint' version
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/object-curly-spacing.md
         'object-curly-spacing': 'off',
-        // @ts-ignore
         '@typescript-eslint/object-curly-spacing': baseStyleRules['object-curly-spacing'],
 
         // Append 'ts' and 'tsx' to Airbnb 'import/extensions' rule

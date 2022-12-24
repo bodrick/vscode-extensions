@@ -21,6 +21,19 @@ module.exports = {
                 'import/no-extraneous-dependencies': 'off',
                 'no-console': 'off'
             }
+        },
+        {
+            files: ['extensions/**/*.ts'],
+            extends: ['@bodrick/eslint-config/vscode'],
+            parserOptions: {
+                project: ['./tsconfig.eslint.json', './packages/*/tsconfig.json', './extensions/*/tsconfig.json'],
+                tsconfigRootDir: __dirname
+            },
+            rules: {
+                // 'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+                'import/no-extraneous-dependencies': 'off',
+                'no-console': 'off'
+            }
         }
     ]
 };

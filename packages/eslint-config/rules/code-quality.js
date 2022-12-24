@@ -1,8 +1,8 @@
 const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
-    plugins: ['unicorn', 'sonarjs'],
-    extends: ['plugin:unicorn/recommended', 'plugin:sonarjs/recommended'],
+    plugins: ['unicorn', 'sonarjs', 'promise'],
+    extends: ['plugin:unicorn/recommended', 'plugin:sonarjs/recommended', 'plugin:promise/recommended'],
     rules: {
         'sonarjs/cognitive-complexity': 'off',
         'sonarjs/no-duplicate-string': 'off',

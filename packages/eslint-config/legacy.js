@@ -1,6 +1,9 @@
 const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
+    settings: {
+        'configuration-type': 'legacy'
+    },
     extends: ['./rules/best-practices', './rules/errors', './rules/node', './rules/style', './rules/variables', './rules/prettier'].map((element) => require.resolve(element)),
     env: {
         browser: true,
