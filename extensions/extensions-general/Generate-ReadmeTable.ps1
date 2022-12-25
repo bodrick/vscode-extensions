@@ -1,3 +1,12 @@
+[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+[System.Console]::InputEncoding = [System.Text.Encoding]::UTF8
+
+$cachePath = Join-Path -Path $PSScriptRoot -ChildPath '.cache'
+if (-not (Test-Path -Path $cachePath))
+{
+    New-Item -Path $cachePath -ItemType Directory | Out-Null
+}
+
 $packageJsonPath = Join-Path -Path $PSScriptRoot -ChildPath package.json
 if (-not (Test-Path -Path $packageJsonPath))
 {
@@ -16,7 +25,7 @@ $sb = [System.Text.StringBuilder]::new()
 foreach ($extension in $extensions)
 {
     Write-Host "Processing $extension"
-    $extensionJsonCachePath = Join-Path -Path $PSScriptRoot -ChildPath ".cache\$extension.json"
+    $extensionJsonCachePath = Join-Path -Path $cachePath -ChildPath "$extension.json"
     $updateCache = $false
     if (Test-Path -Path $extensionJsonCachePath)
     {
@@ -58,7 +67,7 @@ foreach ($extension in $extensions)
     $sb.Append(' | ') | Out-Null
     $sb.Append($extensionInstallsBadge) | Out-Null
     $sb.Append(' | ') | Out-Null
-    $sb.Append($extensionDetails.lastUpdated) | Out-Null
+    $sb.Append($extensionDetails.lastUpdated.ToShortDateString()) | Out-Null
     $sb.Append(' |') | Out-Null
     $sb.AppendLine() | Out-Null
 }
@@ -75,4 +84,4 @@ $template = $template -replace '<!-- EXTENSIONS -->', $sb.ToString()
 $readmePath = Join-Path -Path $PSScriptRoot -ChildPath README.md
 Set-Content -Path $readmePath -Value $template -Encoding UTF8
 
-Write-Host "Generated README.md"
+Write-Host 'Generated README.md'
