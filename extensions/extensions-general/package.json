@@ -1,6 +1,6 @@
 {
   "name": "vscode-extensions-general",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Extensions useful for all languages",
   "license": "MIT",
   "repository": {
@@ -23,7 +23,7 @@
   "scripts": {
     "package": "vsce package",
     "pre-release": "vsce publish --pre-release",
-    "publish": "vsce publish minor"
+    "publish": "vsce publish patch"
   },
   "categories": [
     "Extension Packs"
