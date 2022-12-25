@@ -1,4 +1,6 @@
 .vscode/**
 .vscode-test/**
 .gitignore
-vsc-extension-quickstart.md
+.cache/**
+*.ps1
+README.template.md

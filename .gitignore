@@ -68,3 +68,6 @@ dist/
 stats/
 
 ignore/
+
+.cache/
+*.vsix

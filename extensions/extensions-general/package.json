@@ -1,16 +1,29 @@
 {
-  "name": "extensions-general",
+  "name": "vscode-extensions-general",
   "version": "0.0.1",
-  "description": "",
+  "description": "Extensions useful for all languages",
   "license": "MIT",
-  "author": "Chris Motch <cmotch+npm@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bodrick/vscode-extensions",
+    "directory": "extensions/extensions-general"
+  },
+  "author": {
+    "name": "bodrick",
+    "email": "bodrick@purplepig.net"
+  },
+  "homepage": "https://github.com/bodrick/vscode-extensions",
+  "bugs": {
+    "url": "https://github.com/bodrick/vscode-extensions/issues",
+    "email": "bodrick@purplepig.net"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },
   "scripts": {
     "package": "vsce package",
     "pre-release": "vsce publish --pre-release",
-    "publish": "vsce publish"
+    "publish": "vsce publish minor"
   },
   "categories": [
     "Extension Packs"
