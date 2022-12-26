@@ -1,3 +1,10 @@
+[CmdletBinding(SupportsShouldProcess)]
+param(
+    [switch]$Publish,
+    [ValidateSet('patch', 'minor', 'major', 'none')]
+    [string]$Increment = 'none'
+)
+
 [System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [System.Console]::InputEncoding = [System.Text.Encoding]::UTF8
 
@@ -85,3 +92,16 @@ $readmePath = Join-Path -Path $PSScriptRoot -ChildPath README.md
 Set-Content -Path $readmePath -Value $template -Encoding UTF8
 
 Write-Host 'Generated README.md'
+
+if ($Publish)
+{
+    Write-Host 'Publishing extension'
+    if ($Increment -eq 'none')
+    {
+        vsce publish
+    }
+    else
+    {
+        vsce publish $Increment
+    }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "vscode-extensions-web",
+  "version": "0.1.0",
+  "description": "Extensions useful for web development",
+  "license": "MIT",
+  "repository": {
+    "directory": "extensions/extensions-web",
+    "type": "git",
+    "url": "https://github.com/bodrick/vscode-extensions"
+  },
+  "author": {
+    "email": "bodrick@purplepig.net",
+    "name": "bodrick"
+  },
+  "homepage": "https://github.com/bodrick/vscode-extensions",
+  "bugs": {
+    "email": "bodrick@purplepig.net",
+    "url": "https://github.com/bodrick/vscode-extensions/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "scripts": {
+    "build": "pwsh -noprofile -executionpolicy bypass -File build.ps1",
+    "package": "vsce package",
+    "publish": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish",
+    "publish:patch": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish -Increment patch"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "displayName": "Extensions useful for web development",
+  "extensionPack": [
+    "adrianwilczynski.csharp-to-typescript",
+    "christian-kohler.npm-intellisense",
+    "cmstead.js-codeformer",
+    "dbaeumer.vscode-eslint",
+    "ecmel.vscode-html-css",
+    "eliostruyf.vscode-typescript-exportallmodules",
+    "mrmlnc.vscode-scss",
+    "ms-edgedevtools.vscode-edge-devtools",
+    "p42ai.refactor",
+    "pflannery.vscode-versionlens",
+    "ritwickdey.LiveServer",
+    "sburg.vscode-javascript-booster",
+    "stylelint.vscode-stylelint",
+    "Vue.volar",
+    "wix.vscode-import-cost",
+    "Zignd.html-css-class-completion"
+  ],
+  "icon": "icon-128x128.png",
+  "publisher": "bodrick"
+}

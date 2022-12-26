@@ -1,8 +1,8 @@
-# General Purpose Extension Pack
+# Web Development Extension Pack
 
 ## About
 
-This extension pack provides a set of general purpose extensions for Visual Studio Code that are not specific to any particular language or technology.
+This extension pack provides a set of extensions for Visual Studio Code that are useful for web development.
 
 ## Included Extensions
 

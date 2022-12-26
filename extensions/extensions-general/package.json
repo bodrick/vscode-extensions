@@ -4,26 +4,27 @@
   "description": "Extensions useful for all languages",
   "license": "MIT",
   "repository": {
+    "directory": "extensions/extensions-general",
     "type": "git",
-    "url": "https://github.com/bodrick/vscode-extensions",
-    "directory": "extensions/extensions-general"
+    "url": "https://github.com/bodrick/vscode-extensions"
   },
   "author": {
-    "name": "bodrick",
-    "email": "bodrick@purplepig.net"
+    "email": "bodrick@purplepig.net",
+    "name": "bodrick"
   },
   "homepage": "https://github.com/bodrick/vscode-extensions",
   "bugs": {
-    "url": "https://github.com/bodrick/vscode-extensions/issues",
-    "email": "bodrick@purplepig.net"
+    "email": "bodrick@purplepig.net",
+    "url": "https://github.com/bodrick/vscode-extensions/issues"
   },
   "engines": {
     "vscode": "^1.74.0"
   },
   "scripts": {
+    "build": "pwsh -noprofile -executionpolicy bypass -File build.ps1",
     "package": "vsce package",
-    "pre-release": "vsce publish --pre-release",
-    "publish": "vsce publish patch"
+    "publish": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish",
+    "publish:patch": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish -Increment patch"
   },
   "categories": [
     "Extension Packs"
@@ -38,9 +39,9 @@
     "christian-kohler.path-intellisense",
     "DavidAnson.vscode-markdownlint",
     "DotJoshJohnson.xml",
-    "eamodio.gitlens",
     "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
+    "folke.vscode-monorepo-workspace",
     "formulahendry.code-runner",
     "GitHub.copilot",
     "GitHub.copilot-labs",
@@ -55,7 +56,6 @@
     "redhat.vscode-xml",
     "redhat.vscode-yaml",
     "richie5um2.vscode-sort-json",
-    "ritwickdey.LiveServer",
     "robole.snippets-ranger",
     "spmeesseman.vscode-taskexplorer",
     "streetsidesoftware.code-spell-checker",
@@ -64,7 +64,9 @@
     "usernamehw.errorlens",
     "VisualStudioExptTeam.intellicode-api-usage-examples",
     "VisualStudioExptTeam.vscodeintellicode",
-    "vscode-icons-team.vscode-icons"
+    "vscode-icons-team.vscode-icons",
+    "wraith13.sysinfo-vscode"
   ],
+  "icon": "icon-128x128.png",
   "publisher": "bodrick"
 }
