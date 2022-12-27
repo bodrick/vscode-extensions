@@ -1,6 +1,6 @@
 {
   "name": "vscode-extensions-general",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Extensions useful for all languages",
   "license": "MIT",
   "repository": {
@@ -39,6 +39,7 @@
     "christian-kohler.path-intellisense",
     "DavidAnson.vscode-markdownlint",
     "DotJoshJohnson.xml",
+    "eamodio.gitlens",
     "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
     "folke.vscode-monorepo-workspace",

@@ -1,0 +1,44 @@
+{
+  "name": "vscode-extensions-sql",
+  "version": "0.1.0",
+  "description": "Extensions useful for SQL development",
+  "license": "MIT",
+  "repository": {
+    "directory": "extensions/extensions-sql",
+    "type": "git",
+    "url": "https://github.com/bodrick/vscode-extensions"
+  },
+  "author": {
+    "email": "bodrick@purplepig.net",
+    "name": "bodrick"
+  },
+  "homepage": "https://github.com/bodrick/vscode-extensions",
+  "bugs": {
+    "email": "bodrick@purplepig.net",
+    "url": "https://github.com/bodrick/vscode-extensions/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "scripts": {
+    "build": "pwsh -noprofile -executionpolicy bypass -File build.ps1",
+    "package": "vsce package",
+    "publish": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish",
+    "publish:patch": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish -Increment patch"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "displayName": "Extensions useful for SQL development",
+  "extensionPack": [
+    "dorzey.vscode-sqlfluff",
+    "ms-mssql.data-workspace-vscode",
+    "ms-mssql.mssql",
+    "ms-mssql.sql-bindings-vscode",
+    "ms-mssql.sql-database-projects-vscode",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-mssql"
+  ],
+  "icon": "icon-128x128.png",
+  "publisher": "bodrick"
+}

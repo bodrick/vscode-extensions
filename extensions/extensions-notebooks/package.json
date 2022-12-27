@@ -1,0 +1,43 @@
+{
+  "name": "vscode-extensions-notebooks",
+  "version": "0.1.0",
+  "description": "Extensions useful for Jupyter notebooks development",
+  "license": "MIT",
+  "repository": {
+    "directory": "extensions/extensions-notebooks",
+    "type": "git",
+    "url": "https://github.com/bodrick/vscode-extensions"
+  },
+  "author": {
+    "email": "bodrick@purplepig.net",
+    "name": "bodrick"
+  },
+  "homepage": "https://github.com/bodrick/vscode-extensions",
+  "bugs": {
+    "email": "bodrick@purplepig.net",
+    "url": "https://github.com/bodrick/vscode-extensions/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "scripts": {
+    "build": "pwsh -noprofile -executionpolicy bypass -File build.ps1",
+    "package": "vsce package",
+    "publish": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish",
+    "publish:patch": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish -Increment patch"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "displayName": "Extensions useful for Jupyter notebooks development",
+  "extensionPack": [
+    "ms-dotnettools.dotnet-interactive-vscode",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow"
+  ],
+  "icon": "icon-128x128.png",
+  "publisher": "bodrick"
+}
