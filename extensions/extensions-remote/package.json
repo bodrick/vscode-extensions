@@ -1,0 +1,41 @@
+{
+  "name": "vscode-extensions-remote",
+  "version": "0.1.0",
+  "description": "Extensions useful for remote development",
+  "license": "MIT",
+  "repository": {
+    "directory": "extensions/extensions-remote",
+    "type": "git",
+    "url": "https://github.com/bodrick/vscode-extensions"
+  },
+  "author": {
+    "email": "bodrick@purplepig.net",
+    "name": "bodrick"
+  },
+  "homepage": "https://github.com/bodrick/vscode-extensions",
+  "bugs": {
+    "email": "bodrick@purplepig.net",
+    "url": "https://github.com/bodrick/vscode-extensions/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "scripts": {
+    "build": "pwsh -noprofile -executionpolicy bypass -File build.ps1",
+    "package": "vsce package",
+    "publish": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish",
+    "publish:patch": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish -Increment patch"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "displayName": "Extensions useful for remote development",
+  "extensionPack": [
+    "GitHub.remotehub",
+    "ms-vscode-remote.remote-containers",
+    "ms-vscode-remote.remote-wsl",
+    "ms-vscode.remote-repositories"
+  ],
+  "icon": "icon-128x128.png",
+  "publisher": "bodrick"
+}

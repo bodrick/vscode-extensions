@@ -5,6 +5,7 @@
     "node": ">=12"
   },
   "scripts": {
+    "build": "pnpm --recursive run build",
     "check:format": "prettier --list-different \"./**/*.{ts,js,json,md}\"",
     "check:spelling": "cspell --config=.cspell.json \"**/*.{md,ts,js}\"",
     "clean": "rimraf \"packages/**/{temp,dist}\"",

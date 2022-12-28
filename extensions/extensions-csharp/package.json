@@ -1,0 +1,41 @@
+{
+  "name": "vscode-extensions-csharp",
+  "version": "0.1.0",
+  "description": "Extensions useful for C# development",
+  "license": "MIT",
+  "repository": {
+    "directory": "extensions/extensions-csharp",
+    "type": "git",
+    "url": "https://github.com/bodrick/vscode-extensions"
+  },
+  "author": {
+    "email": "bodrick@purplepig.net",
+    "name": "bodrick"
+  },
+  "homepage": "https://github.com/bodrick/vscode-extensions",
+  "bugs": {
+    "email": "bodrick@purplepig.net",
+    "url": "https://github.com/bodrick/vscode-extensions/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "scripts": {
+    "build": "pwsh -noprofile -executionpolicy bypass -File build.ps1",
+    "package": "vsce package",
+    "publish": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish",
+    "publish:patch": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish -Increment patch"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "displayName": "Extensions useful for C# development",
+  "extensionPack": [
+    "k--kato.docomment",
+    "kiteco.kite",
+    "quicktype.quicktype",
+    "ms-dotnettools.csharp"
+  ],
+  "icon": "icon-128x128.png",
+  "publisher": "bodrick"
+}

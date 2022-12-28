@@ -23,12 +23,7 @@ if (-not (Test-Path -Path $packageJsonPath))
 $packageJson = Get-Content $packageJsonPath | ConvertFrom-Json
 $extensions = $packageJson.extensionPack
 
-$marketplaceUrl = 'https://marketplace.visualstudio.com/items?itemName={0}'
-$baseBadgeUrl = 'https://img.shields.io'
-$marketplaceVersionBadge = '![Visual Studio Marketplace Version]({0}/visual-studio-marketplace/v/{1}?style=flat-square)'
-$marketplaceDownloadBadge = '![Visual Studio Marketplace Downloads]({0}/visual-studio-marketplace/d/{1}?style=flat-square)'
-$marketplaceInstallsBadge = '![Visual Studio Marketplace Installs]({0}/visual-studio-marketplace/i/{1}?style=flat-square)'
-$sb = [System.Text.StringBuilder]::new()
+$sortedExtensions = @()
 foreach ($extension in $extensions)
 {
     Write-Host "Processing $extension"
@@ -57,6 +52,27 @@ foreach ($extension in $extensions)
         Set-Content -Path $extensionJsonCachePath -Value $extensionDetailsJson -Encoding UTF8
         $extensionDetails = $extensionDetailsJson | ConvertFrom-Json
     }
+
+    if ($null -eq $extensionDetails)
+    {
+        Write-Error "Failed to get extension details for $extension"
+        continue
+    }
+
+    $sortedExtensions += $extensionDetails
+}
+$sortedExtensions = $sortedExtensions | Sort-Object -Property displayName
+
+$marketplaceUrl = 'https://marketplace.visualstudio.com/items?itemName={0}'
+$baseBadgeUrl = 'https://img.shields.io'
+$marketplaceVersionBadge = '![Visual Studio Marketplace Version]({0}/visual-studio-marketplace/v/{1}?style=flat-square)'
+$marketplaceDownloadBadge = '![Visual Studio Marketplace Downloads]({0}/visual-studio-marketplace/d/{1}?style=flat-square)'
+$marketplaceInstallsBadge = '![Visual Studio Marketplace Installs]({0}/visual-studio-marketplace/i/{1}?style=flat-square)'
+$sb = [System.Text.StringBuilder]::new()
+foreach ($extensionDetails in $sortedExtensions)
+{
+    $extension = '{0}.{1}' -f $extensionDetails.publisher.publisherName, $extensionDetails.extensionName
+    Write-Host "Generating markdown for $extension"
 
     $extensionUrl = $marketplaceUrl -f $extension
     $extensionDownloadBadge = $marketplaceDownloadBadge -f $baseBadgeUrl, $extension

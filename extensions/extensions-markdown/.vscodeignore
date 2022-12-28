@@ -1,0 +1,6 @@
+.vscode/**
+.vscode-test/**
+.gitignore
+.cache/**
+*.ps1
+README.template.md
