@@ -16,7 +16,7 @@
     "pre-commit": "lint-staged",
     "pre-push": "pnpm run check:format",
     "preinstall": "node scripts/disallow-npm.js",
-    "publish": "node scripts/publish.js",
+    "publish": "pnpm --recursive run publish",
     "security": "pnpm audit --audit-level=moderate"
   },
   "dependencies": {

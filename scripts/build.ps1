@@ -1,5 +1,6 @@
 [CmdletBinding(SupportsShouldProcess)]
 param(
+    [switch]$RefreshCache,
     [switch]$Publish,
     [ValidateSet('patch', 'minor', 'major', 'none')]
     [string]$Increment = 'none'
@@ -8,13 +9,15 @@ param(
 [System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [System.Console]::InputEncoding = [System.Text.Encoding]::UTF8
 
-$cachePath = Join-Path -Path $PSScriptRoot -ChildPath '.cache'
+$currentPath = Get-Location
+
+$cachePath = Join-Path -Path $currentPath -ChildPath '.cache'
 if (-not (Test-Path -Path $cachePath))
 {
     New-Item -Path $cachePath -ItemType Directory | Out-Null
 }
 
-$packageJsonPath = Join-Path -Path $PSScriptRoot -ChildPath package.json
+$packageJsonPath = Join-Path -Path $currentPath -ChildPath package.json
 if (-not (Test-Path -Path $packageJsonPath))
 {
     Write-Error "File not found: $packageJsonPath"
@@ -35,6 +38,11 @@ foreach ($extension in $extensions)
         $updateCache = ((Get-Date) - $lastWriteTime).TotalDays -gt 1
     }
     else
+    {
+        $updateCache = $true
+    }
+
+    if ($RefreshCache)
     {
         $updateCache = $true
     }
@@ -95,7 +103,7 @@ foreach ($extensionDetails in $sortedExtensions)
     $sb.AppendLine() | Out-Null
 }
 
-$templatePath = Join-Path -Path $PSScriptRoot -ChildPath README.template.md
+$templatePath = Join-Path -Path $currentPath -ChildPath README.template.md
 if (-not (Test-Path -Path $templatePath))
 {
     Write-Error "File not found: $templatePath"
@@ -104,20 +112,48 @@ if (-not (Test-Path -Path $templatePath))
 $template = Get-Content -Path $templatePath
 $template = $template -replace '<!-- EXTENSIONS -->', $sb.ToString()
 
-$readmePath = Join-Path -Path $PSScriptRoot -ChildPath README.md
+$readmePath = Join-Path -Path $currentPath -ChildPath README.md
 Set-Content -Path $readmePath -Value $template -Encoding UTF8
 
 Write-Host 'Generated README.md'
 
 if ($Publish)
 {
-    Write-Host 'Publishing extension'
-    if ($Increment -eq 'none')
+    $currentExtensionName = '{0}.{1}' -f $packageJson.publisher, $packageJson.name
+    $currentDetails = vsce show --json $currentExtensionName | ConvertFrom-Json -ErrorAction SilentlyContinue
+    if ($null -eq $currentDetails)
     {
+        Write-Host "Publishing new extension $currentExtensionName"
         vsce publish
     }
     else
     {
-        vsce publish $Increment
+        $versions = $currentDetails.versions | Select-Object -Property version
+        $publishedVersion = [System.Management.Automation.SemanticVersion]::new($versions[0].version)
+        $currentVersion = [System.Management.Automation.SemanticVersion]::new($packageJson.version)
+
+        Write-Host "Found $($versions.Count) versions of $currentExtensionName"
+        Write-Host "Latest published version of $currentExtensionName is $publishedVersion"
+        Write-Host "Current version of $currentExtensionName is $currentVersion"
+
+        if ($publishedVersion -eq $currentVersion -and $Increment -eq 'none')
+        {
+            $readmeUpdateTimestamp = (Get-Item -Path $readmePath).LastWriteTime
+            $currentExtensionTimestamp = $currentDetails.lastUpdated
+            if ($readmeUpdateTimestamp -gt $currentExtensionTimestamp)
+            {
+                Write-Host "Publishing new version of $currentExtensionName"
+                vsce publish patch
+            }
+            else
+            {
+                Write-Host "Skipping publish of $currentExtensionName, version $currentVersion is already published and README.md has not been updated"
+            }
+        }
+        else
+        {
+            Write-Host "Publishing new version of $currentExtensionName"
+            vsce publish $Increment
+        }
     }
 }

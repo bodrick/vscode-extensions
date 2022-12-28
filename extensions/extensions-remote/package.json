@@ -21,10 +21,10 @@
     "vscode": "^1.74.0"
   },
   "scripts": {
-    "build": "pwsh -noprofile -executionpolicy bypass -File build.ps1",
+    "build": "pwsh -noprofile -executionpolicy bypass -File ../../scripts/build.ps1",
     "package": "vsce package",
-    "publish": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish",
-    "publish:patch": "pwsh -noprofile -executionpolicy bypass -File build.ps1 -Publish -Increment patch"
+    "publish": "pwsh -noprofile -executionpolicy bypass -File ../../scripts/build.ps1 -Publish",
+    "publish:patch": "pwsh -noprofile -executionpolicy bypass -File ../../scripts/build.ps1 -Publish -Increment patch"
   },
   "categories": [
     "Extension Packs"
