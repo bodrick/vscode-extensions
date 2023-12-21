@@ -17,7 +17,8 @@
     "pre-push": "pnpm run check:format",
     "preinstall": "node scripts/disallow-npm.js",
     "publish": "pnpm --recursive run publish",
-    "security": "pnpm audit --audit-level=moderate"
+    "security": "pnpm audit --audit-level=moderate",
+    "test": "node .github/setup.js"
   },
   "dependencies": {
     "conventional-commits-parser": "^3.2.4",
