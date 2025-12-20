@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "conventional-commits-parser": "^3.2.4",
-    "semver": "^7.3.8",
+    "semver": "^7.5.2",
     "tslib": "^2.4.1",
     "write-pkg": "^5.1.0"
   },
