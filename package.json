@@ -17,11 +17,12 @@
     "pre-push": "pnpm run check:format",
     "preinstall": "node scripts/disallow-npm.js",
     "publish": "pnpm --recursive run publish",
-    "security": "pnpm audit --audit-level=moderate"
+    "security": "pnpm audit --audit-level=moderate",
+    "test": "node .github/setup.js"
   },
   "dependencies": {
     "conventional-commits-parser": "^3.2.4",
-    "semver": "^7.5.2",
+    "semver": "^7.3.8",
     "tslib": "^2.4.1",
     "write-pkg": "^5.1.0"
   },
